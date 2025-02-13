@@ -1,16 +1,30 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md">
+  <div class="q-pa-lg row items-start q-gutter-xl justify-center">
     <q-card class="my-card">
-      <q-img src="https://cdn.quasar.dev/img/parallax2.jpg">
-        <div class="absolute-bottom">
-          <div class="text-h6">Our Changing Planet</div>
-          <div class="text-subtitle2">by John Doe</div>
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h6">Em 2022 faturamos</div>
+        <div class="text-subtitle2">R$ 1.000.000</div>
+      </q-card-section>
+    </q-card>
+
+    <q-card class="my-card">
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h6">
+          Planos aprovados
+          <q-icon name="fa-solid fa-check" />
         </div>
-      </q-img>
-      <q-card-actions>
-        <q-btn flat>Action 1</q-btn>
-        <q-btn flat>Action 2</q-btn>
-      </q-card-actions>
+        <div class="text-subtitle2">0</div>
+      </q-card-section>
+    </q-card>
+
+    <q-card class="my-card">
+      <q-card-section class="bg-primary text-white">
+        <div class="text-h6">
+          Plano com Consultor
+          <q-icon name="fa-solid fa-user" />
+        </div>
+        <div class="text-subtitle2">2</div>
+      </q-card-section>
     </q-card>
   </div>
 </template>

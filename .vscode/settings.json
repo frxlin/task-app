@@ -1,15 +1,20 @@
 {
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": [
-    "source.fixAll.eslint"
-  ],
+  // Define as ações a serem executadas automaticamente sempre que um arquivo é salvo
+  "editor.codeActionsOnSave": {
+    // Executará correções automáticas identificados pelo ESLint quando você salvar o arquivo
+    // Não use a propriedade "editor.formatOnSave" para não conflitar com essa propriedade
+    "source.fixAll.eslint": "explicit",
+  },
+ 
+  // Controla a frequência de salvamento automático de arquivos
+  "files.autoSave": "off", // Valores válidos: "off", "afterDelay", "onFocusChange", "onWindowChange"
+ 
+  // Define quais arquivos devem ser validados pelo ESLint
   "eslint.validate": [
     "javascript",
     "javascriptreact",
+    "javascriptvue",
     "typescript",
-    "vue"
-  ]
+    "vue",
+  ],
 }

@@ -4,7 +4,9 @@
 
     <user-cards />
 
-    <div class="row col-12">
+    <a-grafic/>
+
+    <div class="row col-12 q-pa-md justify-center">
       <ATableListaTarefas />
     </div>
 
@@ -12,7 +14,6 @@
       <q-btn dense flat round icon="add" @click="toggleRightDrawer" style="margin-left: 50em" />
 
       <q-drawer v-model="rightDrawerOpen" side="right" overlay behavior="desktop" elevated>
-        <!-- Aqui chamamos o componente do formulário -->
         <create-list />
       </q-drawer>
     </div>
@@ -22,8 +23,9 @@
 <script setup>
 import { ref } from 'vue'
 import ATableListaTarefas from 'src/components/ATableListaTarefas.vue'
-import CreateList from 'src/components/createList.vue'
+import CreateList from 'src/components/CreateList.vue'
 import UserCards from 'src/components/UserCards.vue'
+import AGrafic from 'src/components/AGrafic.vue'
 
 const rightDrawerOpen = ref(false)
 const toggleRightDrawer = () => {
