@@ -1,4 +1,5 @@
 <template>
+
   <q-table
     flat
     bordered
@@ -6,7 +7,7 @@
     class=" col-12"
     tabindex="0"
     title="Lista de Tarefas"
-    :rows="rows"
+    :rows="filteredRows"
     :columns="columns"
     row-key="name"
     v-model:selected="selected"
@@ -29,7 +30,27 @@
     </template>
   </q-table>
 
-  <!-- Dialog de confirmação -->
+  <!-- abreo pop up da edicao -->
+  <q-dialog v-model="editDialog" persistent>
+    <q-card>
+      <q-card-section>
+        <div class="text-h6">Editar Tarefa</div>
+      </q-card-section>
+      
+      <q-card-section>
+        <q-input v-model="editingTask.name" label="Título" />
+        <q-input v-model="editingTask.status" label="Status" />
+        <q-input v-model="editingTask.prazo" label="Prazo" type="date" />
+      </q-card-section>
+
+      <q-card-actions align="right">
+        <q-btn flat label="Cancelar" color="primary" v-close-popup />
+        <q-btn flat label="Confirmar" color="positive" @click="updateRow" />
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
+
+  <!-- Dialog de confirmação de exclusão -->
   <q-dialog v-model="confirm" persistent>
     <q-card>
       <q-card-section class="row items-center">
@@ -45,8 +66,9 @@
   </q-dialog>
 </template>
 
+
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const columns = [
   {
@@ -71,13 +93,27 @@ const rows = ref([
 const filter = ref('')
 const selected = ref([])
 
-// Variáveis de controle do diálogo
+// Variáveis de controle do diálogo de confirmação
 const confirm = ref(false)
 const selectedRow = ref(null)
 
+// Variáveis de controle do diálogo de edição
+const editDialog = ref(false)
+const editingTask = ref({})
+
 function editRow(row) {
-  console.log('Editando:', row)
-  // Lógica para editar
+  // Preenche os dados no formulário de edição
+  editingTask.value = { ...row }
+  editDialog.value = true
+}
+
+// Função para atualizar a linha com os dados editados
+function updateRow() {
+  const index = rows.value.findIndex(item => item.id === editingTask.value.id)
+  if (index !== -1) {
+    rows.value[index] = { ...editingTask.value }
+  }
+  editDialog.value = false
 }
 
 // Abre o diálogo de confirmação
@@ -95,4 +131,20 @@ function deleteRow(row) {
   }
   confirm.value = false 
 }
+
+
+
+
+// Filter das linhas
+const filteredRows = computed(() => {
+  if (!filter.value) {
+    return rows.value
+  }
+  return rows.value.filter(row => {
+    return row.name.toLowerCase().includes(filter.value.toLowerCase()) ||
+           row.status.toLowerCase().includes(filter.value.toLowerCase()) ||
+           row.prazo.toLowerCase().includes(filter.value.toLowerCase())
+  })
+})
+
 </script>

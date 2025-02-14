@@ -1,7 +1,12 @@
 <template>
+  <!-- Componente do gráfico -->
   <div>
+   <!-- o "type" eu defino qual gráfico será abordado
+    o "data" ele avincula o valor de chartData ao tributo data(A variável chartData é definida no bloco <script setup>, e ela contém os dados que o gráfico vai exibir)
+     "options" é usada para configurar o grafico como :titulo, subtitulo e outras opçoes  -->
     <GChart
-      type="ColumnChart"
+    
+      type="ColumnChart"  
       :data="chartData"
       :options="chartOptions"
     />
@@ -9,9 +14,9 @@
 </template>
 
 <script setup>
-import { GChart } from 'vue-google-charts'; // Importe o componente GChart
+import { GChart } from 'vue-google-charts'; 
 
-// Dados e opções do gráfico
+// Dados
 const chartData = [
   ['Year', 'Sales', 'Expenses', 'Profit'],
   ['2014', 1000, 400, 200],
